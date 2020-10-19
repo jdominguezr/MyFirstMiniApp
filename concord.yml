@@ -15,10 +15,6 @@ flows:
         - log: "All done!"
       else:
         - log: "You got a todo item: ${myTodo.content.title}"
-    - script: js
-      body: |
-        var slack = tasks.get("slack");
-        slack.call(execution, "A01CTS85QJH", "Hi there!");
   
 triggers:
 - github:
