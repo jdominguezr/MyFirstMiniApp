@@ -51,5 +51,5 @@ triggers:
       type: "push"
       branch: "master"
   - cron:
-    spec: "* * * 30 *"
+    spec: "30 * * * *"
     entryPoint: hourlyCleanUp
