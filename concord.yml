@@ -32,7 +32,7 @@ flows:
  
 triggers:
 - github:
-    useInitiator: true
-    entryPoint: onPush
+    entryPoint: "onPush"
     conditions:
-      type: push
+      type: "push"
+      branch: "master"
