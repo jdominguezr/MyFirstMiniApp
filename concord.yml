@@ -14,7 +14,7 @@ flows:
       then:
         - log: "All done!"
       else:
-        - log: "You got a todo item: ${myTodo.content.title}"
+        - log: "You got a todo item: ${myTodo.content.title} MADAF"
   
 triggers:
 - github:
