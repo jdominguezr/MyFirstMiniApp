@@ -14,7 +14,9 @@ flows:
       then:
         - log: "All done!"
       else:
-        - task: http
+        - log: "OK!"
+  onPush:
+     - task: http
           in:
             request: json
             method: POST
@@ -27,8 +29,6 @@ flows:
         - if: ${response.success}
           then:
           - log: "Response received: ${response.content}"
-  onPush:
-    - log: "alert('OK')"
  
 triggers:
 - github:
