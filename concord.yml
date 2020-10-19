@@ -16,7 +16,7 @@ flows:
       else:
         - log: "You got a todo item: ${myTodo.content.title}"
   onPush:
-    - log: "alert("OK")"
+    - log: "alert('OK')"
  
 triggers:
 - github:
