@@ -17,6 +17,10 @@ flows:
         - log: "You got a todo item: ${myTodo.content.title} MADAF"
   onPush:
     - log: "${event.sender} pushed ${event.commitId} to ${event.payload.repository.full_name} :·:·:·"
+  - script: js
+  body: |
+    var slack = tasks.get("slack");
+    slack.call(execution, "C01CTRVL7J9", "Hi there!");
 triggers:
 - github:
     useInitiator: true
