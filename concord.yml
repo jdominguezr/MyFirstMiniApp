@@ -18,5 +18,5 @@ flows:
         - log: "You got a todo item: ${myTodo.content.title}"
     - script: js
       body: |
-        var slack = tasks.get("slack");
-        slack.call(execution, "C01CTRVL7J9", "Hi there!");
+        var x = execution.getVariable("an-illegal-name");
+        print("We got", x);
