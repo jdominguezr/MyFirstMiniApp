@@ -29,9 +29,10 @@ flows:
     - if: ${response.success}
       then:
       - log: "Response received: ${response.content}"
+ 
 triggers:
   - github:
-    entryPoint: "onPush"
+    entryPoint: onPush
     conditions:
       type: "push"
-      branch: "master"
+      branch: master
