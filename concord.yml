@@ -15,6 +15,15 @@ flows:
         - log: "All done!"
       else:
         - log: "You got a todo item: ${myTodo.content.title}"
+        -  task: http
+          in:
+            method: POST
+            url: "https://prod-29.westus.logic.azure.com/workflows/cb8555e85d78488a8f489c41bc614de6/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=siUPJPKiRBUmFhDJy1JoUg0N4ry1C9vaHApJwQ8zvaE"
+            response: string
+            out: response
+        - if: ${response.success}
+          then:
+          - log: "Response received: ${response.content}"
   onPush:
     - log: "alert('OK')"
  
