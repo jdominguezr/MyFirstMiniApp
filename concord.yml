@@ -15,7 +15,8 @@ flows:
         - log: "All done!"
       else:
         - log: "You got a todo item: ${myTodo.content.title} MADAF"
-  
+  onPush:
+    - log: "${event.sender} pushed ${event.commitId} to ${event.payload.repository.full_name}"
 triggers:
 - github:
     useInitiator: true
