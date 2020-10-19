@@ -35,4 +35,3 @@ triggers:
     entryPoint: onPush
     conditions:
       type: "push"
-      branch: "master"
