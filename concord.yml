@@ -4,10 +4,6 @@ configuration:
     myVar: "world"
 flows:
   default:
-    - script: js
-    body: |
-      var slack = tasks.get("slack");
-      slack.call(execution, "C01CTRVL7J9", "Hi there!");
     - task: http
       in:
         url: "https://jsonplaceholder.typicode.com/todos/${todoId}"
@@ -18,9 +14,9 @@ flows:
       then:
         - log: "All done!"
       else:
-        - log: "You got a todo item: ${myTodo.content.title} MADAF"
+        - log: "You got a todo item: ${myTodo.content.title}"
   onPush:
-    - log: "${event.sender} pushed ${event.commitId} to ${event.payload.repository.full_name} :·:·:·"
+    - log: "alert("OK")"
  
 triggers:
 - github:
