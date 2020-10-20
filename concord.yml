@@ -1,21 +1,9 @@
 configuration:
   arguments:
-    todoId: "1"
-    myVar: "world"
-flows:
-  default:
-    - task: http
-      in:
-        url: "https://jsonplaceholder.typicode.com/todos/${todoId}"
-        response: json
-        out: myTodo
+    dontTestLabel: "don't test"
 
-    - if: "${myTodo.content.completed}"
-      then:
-        - log: "All done!"
-      else:
-        - log: "OK!"
-  onPush:
+flows:
+  onPr:
     - task: http
       in:
         request: json
@@ -29,13 +17,19 @@ flows:
     - if: ${response.success}
       then:
       - log: "Response received: ${response.content}"
-triggers:
-- github:
-    type: push
-    useInitiator: true
-    entryPoint: onPush
 
-#bien jalao si funciona con cron :) pero no con los eventos de git :(
-#- cron:
-#    spec: "0,3,6,9 * * * *"
-#    entryPoint: hourlyCleanUp
+triggers:
+  - github:
+      version: 2
+      entryPoint: onPr
+      useInitiator: true
+      arguments:
+        concordRevision: "${event.payload.pull_request.head.sha}"
+        prLabels: "${event.payload.pull_request.labels}"
+      conditions:
+        githubOrg: "jdominguezr"
+        githubRepo: "MyFirstMiniApp"
+        branch: ".*"
+        type: "pull_request"
+        payload:
+          action: "(opened|synchronize)"
