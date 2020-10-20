@@ -15,7 +15,7 @@ flows:
         - log: "All done!"
       else:
         - log: "OK!"
-  hourlyCleanUp:
+  onPush:
     - task: http
       in:
         request: json
@@ -31,11 +31,9 @@ flows:
       - log: "Response received: ${response.content}"
 triggers:
 - github:
-    entryPoint: hourlyCleanUp
-    conditions:
-      type: "pull_request"
-      status: "opened"
-      branch: ".*"
+    type: push
+    useInitiator: true
+    entryPoint: onPush
 
 #bien jalao si funciona con cron :) pero no con los eventos de git :(
 #- cron:
