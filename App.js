@@ -36,7 +36,7 @@ const App: () => React$Node = () => {
           <View style={styles.body}>
             
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Hello Team, this is my first APP with Electrode :D</Text>
+              <Text style={styles.sectionTitle}>Hello Team, this is my first APP with Electrodefff :D</Text>
               <Text style={styles.sectionDescription}>
                 <ReloadInstructions />
               </Text>
