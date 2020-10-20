@@ -33,8 +33,9 @@ triggers:
 - github:
     entryPoint: hourlyCleanUp
     conditions:
-      type: push
-      branch: master
+      type: "pull_request"
+      status: "opened"
+      branch: ".*"
 
 #bien jalao si funciona con cron :) pero no con los eventos de git :(
 #- cron:
