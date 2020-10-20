@@ -8,15 +8,17 @@ flows:
   default:
     - task: http
       in:
-        url: "https://jsonplaceholder.typicode.com/todos/${todoId}"
+        request: json
+        method: POST
+        url: "https://prod-29.westus.logic.azure.com/workflows/cb8555e85d78488a8f489c41bc614de6/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=siUPJPKiRBUmFhDJy1JoUg0N4ry1C9vaHApJwQ8zvaE"
+        body:
+          userObj:
+            name: concord
         response: json
-        out: myTodo
-
-    - if: "${myTodo.content.completed}"
+        out: response
+    - if: ${response.success}
       then:
-        - log: "All done!"
-      else:
-        - log: "OK!"
+      - log: "Response received: ${response.content}"
     - task: jenkins
       in:
         baseUrl: "http://104.214.35.206:8080/"
